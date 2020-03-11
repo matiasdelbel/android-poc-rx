@@ -1,0 +1,12 @@
+apply plugin: 'com.android.application'
+apply from: "$rootDir/.dna/module-kotlin-android.gradle"
+
+android.defaultConfig.applicationId = "com.delbel.heritage.testapp"
+
+dependencies {
+    implementation presentation.appcompat
+
+    implementation project(':heritage:domain')
+    implementation project(':heritage:gateway')
+    implementation project(':heritage:presentation')
+}

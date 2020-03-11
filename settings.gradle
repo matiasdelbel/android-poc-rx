@@ -1,0 +1,10 @@
+include ':app'
+
+// Heritage
+include ':heritage:domain'
+include ':heritage:gateway'
+include ':heritage:presentation'
+
+project(':heritage:domain').projectDir = new File(rootDir, 'heritage/domain')
+project(':heritage:gateway').projectDir = new File(rootDir, 'heritage/gateway')
+project(':heritage:presentation').projectDir = new File(rootDir, 'heritage/presentation')
