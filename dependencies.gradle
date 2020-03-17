@@ -8,7 +8,9 @@ ext {
     ]
 
     core = [
-            stdlibJdk7: "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.61"
+            stdlibJdk7: "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.61",
+
+            rxJava    : "io.reactivex.rxjava2:rxjava:2.2.5"
     ]
 
     test = [
@@ -19,5 +21,9 @@ ext {
 
     presentation = [
             appcompat: "androidx.appcompat:appcompat:1.1.0"
+    ]
+
+    gateway = [
+            gson: "com.google.code.gson:gson:2.8.6"
     ]
 }
