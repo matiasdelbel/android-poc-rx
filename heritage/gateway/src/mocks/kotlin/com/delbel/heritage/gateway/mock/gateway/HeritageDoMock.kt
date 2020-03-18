@@ -1,8 +1,8 @@
-package com.delbel.heritage.gateway.source
+package com.delbel.heritage.gateway.mock.gateway
 
 import com.delbel.heritage.gateway.model.HeritageDo
 
-internal class Heritages {
+internal class HeritageDoMock {
 
     companion object {
         val AACHEN_CATHEDRAL = HeritageDo(

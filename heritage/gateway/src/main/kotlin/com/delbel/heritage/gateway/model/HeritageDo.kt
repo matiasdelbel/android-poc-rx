@@ -1,7 +1,11 @@
 package com.delbel.heritage.gateway.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "heritage")
 internal data class HeritageDo(
-    val id: String,
+    @PrimaryKey val id: String,
     val year: Int,
     val target: String,
     val name: String,
