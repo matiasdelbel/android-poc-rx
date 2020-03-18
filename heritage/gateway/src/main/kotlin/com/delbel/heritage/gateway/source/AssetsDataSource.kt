@@ -1,17 +1,19 @@
 package com.delbel.heritage.gateway.source
 
 import android.content.res.AssetManager
+import com.delbel.common.rx.ComputationScheduler
 import com.delbel.heritage.gateway.model.HeritageDo
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import io.reactivex.Scheduler
 import io.reactivex.Single
 import java.io.IOException
+import javax.inject.Inject
 
-internal class AssetsDataSource constructor(
+internal class AssetsDataSource @Inject constructor(
     private val assetsManager: AssetManager,
     private val jsonParser: Gson,
-    private val scheduler: Scheduler
+    @ComputationScheduler private val computationScheduler: Scheduler
 ) {
 
     companion object {
@@ -19,7 +21,7 @@ internal class AssetsDataSource constructor(
     }
 
     fun obtainAll() = Single.fromCallable { readJsonFromAsset() }
-        .subscribeOn(scheduler)
+        .subscribeOn(computationScheduler)
         .map { convertToDto(json = it) }
 
     @Throws(IOException::class)

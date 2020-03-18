@@ -1,5 +1,10 @@
 include ':app'
 
+// Common
+include ':common:rx'
+
+project(':common:rx').projectDir = new File(rootDir, 'common/rx')
+
 // Heritage
 include ':heritage:domain'
 include ':heritage:gateway'
