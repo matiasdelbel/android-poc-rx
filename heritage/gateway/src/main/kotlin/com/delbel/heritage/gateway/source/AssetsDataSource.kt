@@ -4,28 +4,23 @@ import android.content.res.AssetManager
 import com.delbel.heritage.gateway.model.HeritageDo
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import io.reactivex.Scheduler
 import io.reactivex.Single
 import java.io.IOException
 
 internal class AssetsDataSource constructor(
     private val assetsManager: AssetManager,
-    private val jsonParser: Gson
+    private val jsonParser: Gson,
+    private val scheduler: Scheduler
 ) {
 
     companion object {
         private const val FILE_NAME = "heritages.json"
     }
 
-    fun obtainAll() = Single.create<List<HeritageDo>> { emitter ->
-        try {
-            val jsonFromAssets = readJsonFromAsset()
-            val heritagesDo = convertToDto(json = jsonFromAssets)
-
-            emitter.onSuccess(heritagesDo)
-        } catch (e: IOException) {
-            emitter.onError(e)
-        }
-    }
+    fun obtainAll() = Single.fromCallable { readJsonFromAsset() }
+        .subscribeOn(scheduler)
+        .map { convertToDto(json = it) }
 
     @Throws(IOException::class)
     private fun readJsonFromAsset(): String {
