@@ -16,8 +16,9 @@ ext {
 
             dagger        : "com.google.dagger:dagger:2.25.2",
             daggerCompiler: "com.google.dagger:dagger-compiler:2.25.2",
+            daggerRx      : "com.delbel.dagger:dagger-rx:0.0.3",
 
-            daggerRx      : "com.delbel.dagger:dagger-rx:0.0.3"
+            rxWork        : "android.arch.work:work-rxjava2:1.0.1"
     ]
 
     test = [

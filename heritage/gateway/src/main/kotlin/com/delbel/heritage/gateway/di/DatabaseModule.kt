@@ -1,14 +1,16 @@
 package com.delbel.heritage.gateway.di
 
-import android.content.Context
+import android.app.Application
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import androidx.work.WorkManager
+import com.delbel.heritage.gateway.database.DatabasePopulateWorker
 import com.delbel.heritage.gateway.database.HeritageDatabase
 import dagger.Module
 import dagger.Provides
 
-@Module
+@Module (includes = [WorkerBindingModule::class])
 internal class DatabaseModule {
 
     companion object {
@@ -16,12 +18,11 @@ internal class DatabaseModule {
     }
 
     @Provides
-    fun provideDatabase(context: Context) =
-        Room.databaseBuilder(context, HeritageDatabase::class.java, DATABASE_NAME)
+    fun provideDatabase(application: Application) =
+        Room.databaseBuilder(application, HeritageDatabase::class.java, DATABASE_NAME)
             .addCallback(object : RoomDatabase.Callback() {
-
                 override fun onCreate(db: SupportSQLiteDatabase) {
-                    TODO("Populate the data base")
+                    WorkManager.getInstance().enqueue(DatabasePopulateWorker.workRequest())
                 }
             })
             .build()
