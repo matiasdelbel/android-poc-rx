@@ -20,6 +20,8 @@ android {
 }
 
 dependencies {
+    implementation project(':common:work')
+
     implementation project(':heritage:domain')
 
     implementation core.dagger
@@ -27,6 +29,8 @@ dependencies {
     kapt core.daggerCompiler
 
     implementation core.paging
+
+    implementation core.rxWork
 
     implementation gateway.gson
 
