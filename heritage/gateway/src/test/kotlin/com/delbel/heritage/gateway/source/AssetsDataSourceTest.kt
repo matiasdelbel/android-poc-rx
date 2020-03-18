@@ -1,16 +1,13 @@
 package com.delbel.heritage.gateway.source
 
 import android.content.res.AssetManager
-import com.delbel.heritage.gateway.model.HeritageDo
 import com.delbel.heritage.gateway.source.Heritages.Companion.AACHEN_CATHEDRAL
 import com.delbel.heritage.gateway.source.Heritages.Companion.CITY_OF_QUITO
 import com.google.gson.Gson
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.doThrow
 import com.nhaarman.mockitokotlin2.mock
-import io.reactivex.observers.TestObserver
-import org.junit.After
-import org.junit.Before
+import io.reactivex.schedulers.Schedulers
 import org.junit.Test
 import java.io.IOException
 
@@ -21,24 +18,18 @@ class AssetsDataSourceTest {
         private const val MOCKS_FILE_NAME = "/mock/aachen-quito-heritages.json"
     }
 
-    private lateinit var testObserver: TestObserver<List<HeritageDo>>
-
-    @Before
-    fun before() {
-        testObserver = TestObserver()
-    }
-
-    @After
-    fun after() = testObserver.dispose()
-
     @Test
     fun `obtainAll should emit list`() {
         val assetManager = mock<AssetManager> {
             on { open(ASSETS_FILE_NAME) } doReturn javaClass.getResourceAsStream(MOCKS_FILE_NAME)!!
         }
-        val dataSource = AssetsDataSource(assetManager, jsonParser = Gson())
+        val dataSource = AssetsDataSource(
+            assetsManager = assetManager,
+            jsonParser = Gson(),
+            scheduler = Schedulers.trampoline()
+        )
 
-        dataSource.obtainAll().subscribe(testObserver)
+        val testObserver = dataSource.obtainAll().test()
 
         testObserver.assertNoErrors()
         testObserver.assertComplete()
@@ -51,9 +42,13 @@ class AssetsDataSourceTest {
         val assetManager = mock<AssetManager> {
             on { open(ASSETS_FILE_NAME) } doThrow expectedError
         }
-        val dataSource = AssetsDataSource(assetManager, jsonParser = mock())
+        val dataSource = AssetsDataSource(
+            assetsManager = assetManager,
+            jsonParser = mock(),
+            scheduler = Schedulers.trampoline()
+        )
 
-        dataSource.obtainAll().subscribe(testObserver)
+        val testObserver = dataSource.obtainAll().test()
 
         testObserver.assertError(expectedError)
         testObserver.assertNotComplete()
