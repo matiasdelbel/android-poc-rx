@@ -1,8 +1,8 @@
 package com.delbel.heritage.gateway.source
 
 import android.content.res.AssetManager
-import com.delbel.heritage.gateway.source.Heritages.Companion.AACHEN_CATHEDRAL
-import com.delbel.heritage.gateway.source.Heritages.Companion.CITY_OF_QUITO
+import com.delbel.heritage.gateway.mock.gateway.HeritageDoMock.Companion.AACHEN_CATHEDRAL
+import com.delbel.heritage.gateway.mock.gateway.HeritageDoMock.Companion.CITY_OF_QUITO
 import com.google.gson.Gson
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.doThrow

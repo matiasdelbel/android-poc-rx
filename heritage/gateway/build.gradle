@@ -1,12 +1,33 @@
 apply plugin: 'com.android.library'
 
 apply from: "$rootDir/.dna/module-kotlin-android.gradle"
-apply from: "$rootDir/.dna/keychain.gradle"
+
+android {
+
+    defaultConfig {
+        javaCompileOptions {
+            annotationProcessorOptions { argument 'room.incremental', 'true' }
+        }
+    }
+
+    sourceSets {
+        test.java.srcDirs += 'src/mocks/kotlin/'
+        test.resources.srcDirs += ['src/mocks/resources']
+
+        androidTest.java.srcDirs += 'src/mocks/kotlin/'
+        androidTest.resources.srcDirs += ['src/mocks/resources']
+    }
+}
 
 dependencies {
     implementation project(':heritage:domain')
 
     implementation core.rxJava
+    implementation core.paging
 
     implementation gateway.gson
+
+    implementation gateway.rxRoom
+    implementation gateway.room
+    kapt gateway.roomCompiler
 }
