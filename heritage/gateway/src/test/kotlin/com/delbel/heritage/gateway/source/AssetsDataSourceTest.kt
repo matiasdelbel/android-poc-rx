@@ -26,7 +26,7 @@ class AssetsDataSourceTest {
         val dataSource = AssetsDataSource(
             assetsManager = assetManager,
             jsonParser = Gson(),
-            scheduler = Schedulers.trampoline()
+            computationScheduler = Schedulers.trampoline()
         )
 
         val testObserver = dataSource.obtainAll().test()
@@ -45,7 +45,7 @@ class AssetsDataSourceTest {
         val dataSource = AssetsDataSource(
             assetsManager = assetManager,
             jsonParser = mock(),
-            scheduler = Schedulers.trampoline()
+            computationScheduler = Schedulers.trampoline()
         )
 
         val testObserver = dataSource.obtainAll().test()

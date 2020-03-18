@@ -20,9 +20,12 @@ android {
 }
 
 dependencies {
+    implementation project(':common:rx')
     implementation project(':heritage:domain')
 
-    implementation core.rxJava
+    implementation core.dagger
+    kapt core.daggerCompiler
+
     implementation core.paging
 
     implementation gateway.gson
