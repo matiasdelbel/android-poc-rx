@@ -1,7 +1,7 @@
 package com.delbel.heritage.gateway.source
 
 import android.content.res.AssetManager
-import com.delbel.common.rx.ComputationScheduler
+import com.delbel.dagger.rx.ComputationScheduler
 import com.delbel.heritage.gateway.model.HeritageDo
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
