@@ -1,7 +1,7 @@
 package com.delbel.heritage.gateway.di
 
-import com.delbel.common.work.ListenableWorkerFactory
-import com.delbel.common.work.di.WorkerKey
+import com.delbel.dagger.work.ListenableWorkerFactory
+import com.delbel.dagger.work.di.WorkerKey
 import com.delbel.heritage.gateway.database.DatabasePopulateWorker
 import dagger.Binds
 import dagger.Module

@@ -1,11 +1,5 @@
 include ':app'
 
-// Common
-include ':common:work'
-
-project(':common:work').projectDir = new File(rootDir, 'common/work')
-
-// Heritage
 include ':heritage:domain'
 include ':heritage:gateway'
 include ':heritage:presentation'

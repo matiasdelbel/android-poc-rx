@@ -5,7 +5,7 @@ import androidx.work.ListenableWorker
 import androidx.work.OneTimeWorkRequest
 import androidx.work.RxWorker
 import androidx.work.WorkerParameters
-import com.delbel.common.work.ListenableWorkerFactory
+import com.delbel.dagger.work.ListenableWorkerFactory
 import com.delbel.heritage.gateway.source.AssetsDataSource
 import javax.inject.Inject
 import javax.inject.Provider

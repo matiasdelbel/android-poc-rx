@@ -1,9 +1,8 @@
 package com.delbel.heritage.testapp
 
 import android.app.Application
-import androidx.work.Configuration
-import androidx.work.WorkManager
 import androidx.work.WorkerFactory
+import com.delbel.dagger.work.ext.initializeWorkManager
 import com.delbel.heritage.testapp.di.DaggerMainComponent
 import com.delbel.heritage.testapp.di.MainComponent
 import javax.inject.Inject
@@ -21,11 +20,8 @@ class MainApplication : Application() {
         super.onCreate()
 
         injectDependencies()
-        initializeWorkManager()
+        initializeWorkManager(factory)
     }
 
     private fun injectDependencies() = mainComponent.inject(application = this)
-
-    private fun initializeWorkManager() =
-        WorkManager.initialize(this, Configuration.Builder().setWorkerFactory(factory).build())
 }
