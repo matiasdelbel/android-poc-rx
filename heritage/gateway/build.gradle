@@ -20,12 +20,11 @@ android {
 }
 
 dependencies {
-    implementation project(':common:work')
-
     implementation project(':heritage:domain')
 
     implementation core.dagger
     implementation core.daggerRx
+    implementation core.daggerWork
     kapt core.daggerCompiler
 
     implementation core.paging

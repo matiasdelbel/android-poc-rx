@@ -4,19 +4,18 @@ apply from: "$rootDir/.dna/module-kotlin-android.gradle"
 android.defaultConfig.applicationId = "com.delbel.heritage.testapp"
 
 dependencies {
-    implementation project(':common:work')
-
     implementation project(':heritage:domain')
     implementation project(':heritage:gateway')
     implementation project(':heritage:presentation')
 
     implementation core.dagger
     implementation core.daggerRx
+    implementation core.daggerWork
+    implementation core.rxWork
     kapt core.daggerCompiler
 
-    implementation core.rxWork
-
     implementation gateway.gson
+    implementation gateway.room
 
     implementation presentation.appcompat
 }

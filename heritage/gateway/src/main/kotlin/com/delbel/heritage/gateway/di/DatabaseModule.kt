@@ -22,7 +22,7 @@ internal class DatabaseModule {
         Room.databaseBuilder(application, HeritageDatabase::class.java, DATABASE_NAME)
             .addCallback(object : RoomDatabase.Callback() {
                 override fun onCreate(db: SupportSQLiteDatabase) {
-                    WorkManager.getInstance().enqueue(DatabasePopulateWorker.workRequest())
+                    WorkManager.getInstance(application).enqueue(DatabasePopulateWorker.workRequest())
                 }
             })
             .build()
