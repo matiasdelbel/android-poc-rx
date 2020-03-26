@@ -8,24 +8,32 @@ ext {
     ]
 
     core = [
-            stdlibJdk7    : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.61",
+            stdlibJdk7     : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.61",
 
-            rxJava        : "io.reactivex.rxjava2:rxjava:2.2.5",
+            rxJava         : "io.reactivex.rxjava2:rxjava:2.2.5",
 
-            paging        : "androidx.paging:paging-runtime-ktx:2.1.1",
+            paging         : "androidx.paging:paging-runtime-ktx:2.1.2",
+            pagingRx       : "androidx.paging:paging-rxjava2-ktx:2.1.2",
 
-            dagger        : "com.google.dagger:dagger:2.25.2",
-            daggerCompiler: "com.google.dagger:dagger-compiler:2.25.2",
-            daggerRx      : "com.delbel.dagger:dagger-rx:0.0.3",
-            daggerWork    : "com.delbel.dagger:dagger-work:0.0.2",
+            dagger         : "com.google.dagger:dagger:2.25.2",
+            daggerSupport  : "com.google.dagger:dagger-android-support:2.25.2",
+            daggerProcessor: "com.google.dagger:dagger-android-processor:2.25.2",
+            daggerCompiler : "com.google.dagger:dagger-compiler:2.25.2",
 
-            rxWork        : "android.arch.work:work-rxjava2:1.0.1"
+            daggerRx       : "com.delbel.dagger:dagger-rx:0.0.3",
+            daggerWork     : "com.delbel.dagger:dagger-work:0.0.2",
+            daggerViewModel: "com.delbel.dagger:dagger-viewmodel:0.0.3",
+
+            workRuntime    : "androidx.work:work-runtime:2.3.4",
+            rxWork         : "androidx.work:work-rxjava2:2.3.4"
     ]
 
     test = [
-            jUnit  : "junit:junit:4.12",
-            mockito: "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0",
-            truth  : "com.google.truth:truth:1.0"
+            jUnit      : "junit:junit:4.12",
+            mockito    : "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0",
+            truth      : "com.google.truth:truth:1.0",
+
+            jetPackCore: "android.arch.core:core-testing:1.1.1",
     ]
 
     androidTest = [
@@ -36,7 +44,14 @@ ext {
     ]
 
     presentation = [
-            appcompat: "androidx.appcompat:appcompat:1.1.0"
+            appcompat       : "androidx.appcompat:appcompat:1.1.0",
+            core            : "androidx.core:core-ktx:1.2.0",
+            viewModel       : "androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0",
+            material        : "com.google.android.material:material:1.0.0",
+            constraintLayout: "androidx.constraintlayout:constraintlayout:1.1.3",
+            fresco          : "com.facebook.fresco:fresco:2.1.0",
+            reactiveStreams : "androidx.lifecycle:lifecycle-reactivestreams-ktx:2.2.0",
+            liveData        : "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
     ]
 
     gateway = [

@@ -28,8 +28,10 @@ dependencies {
     kapt core.daggerCompiler
 
     implementation core.paging
+    implementation core.pagingRx
 
     implementation core.rxWork
+    implementation core.workRuntime
 
     implementation gateway.gson
 
