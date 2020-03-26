@@ -4,8 +4,29 @@ apply from: "$rootDir/.dna/module-kotlin-android.gradle"
 
 apply plugin: 'kotlin-android-extensions'
 
-android.resourcePrefix 'view_featureA'
+android.resourcePrefix 'htg'
 
 dependencies {
     implementation project(':heritage:domain')
+
+    implementation core.dagger
+    implementation core.daggerSupport
+    implementation core.daggerViewModel
+    kapt core.daggerProcessor
+    kapt core.daggerCompiler
+
+    implementation core.paging
+
+    implementation core.rxJava
+
+    implementation presentation.appcompat
+    implementation presentation.core
+    implementation presentation.viewModel
+    implementation presentation.material
+    implementation presentation.constraintLayout
+    implementation presentation.fresco
+    implementation presentation.reactiveStreams
+    implementation presentation.liveData
+
+    testImplementation test.jetPackCore
 }

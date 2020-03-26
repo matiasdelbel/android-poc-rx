@@ -9,13 +9,19 @@ dependencies {
     implementation project(':heritage:presentation')
 
     implementation core.dagger
-    implementation core.daggerRx
+    implementation core.daggerSupport
     implementation core.daggerWork
     implementation core.rxWork
+    implementation core.daggerRx
+    implementation core.daggerViewModel
+    kapt core.daggerProcessor
     kapt core.daggerCompiler
+
+    implementation core.paging
 
     implementation gateway.gson
     implementation gateway.room
 
     implementation presentation.appcompat
+    implementation presentation.fresco
 }

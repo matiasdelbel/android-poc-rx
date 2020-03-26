@@ -1,2 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.delbel.heritage.presentation"/>
+    package="com.delbel.heritage.presentation">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+</manifest>

@@ -1,6 +1,5 @@
 package com.delbel.heritage.gateway
 
-import androidx.lifecycle.LiveData
 import androidx.paging.DataSource
 import com.delbel.heritage.domain.HeritageCoordinate
 import com.delbel.heritage.domain.HeritageDetail
@@ -9,6 +8,7 @@ import com.google.common.truth.Truth.assertThat
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
+import io.reactivex.Flowable
 import io.reactivex.Single
 import org.junit.Test
 
@@ -23,7 +23,7 @@ class UnescoHeritageRepositoryTest {
         val result = repository.obtainAll()
 
         verify(dao).obtainAll()
-        assertThat(result).isInstanceOf(LiveData::class.java)
+        assertThat(result).isInstanceOf(Flowable::class.java)
     }
 
     @Test
