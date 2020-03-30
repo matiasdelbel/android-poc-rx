@@ -1,6 +1,6 @@
 package com.delbel.heritage.testapp
 
-import android.app.Application
+import androidx.multidex.MultiDexApplication
 import androidx.work.WorkerFactory
 import com.delbel.dagger.work.ext.initializeWorkManager
 import com.delbel.heritage.testapp.di.DaggerMainComponent
@@ -9,7 +9,7 @@ import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
 import javax.inject.Inject
 
-class MainApplication : Application(), HasAndroidInjector {
+class MainApplication : MultiDexApplication(), HasAndroidInjector {
 
     @Inject
     lateinit var factory: WorkerFactory

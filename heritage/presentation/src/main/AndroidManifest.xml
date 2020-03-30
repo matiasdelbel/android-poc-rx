@@ -3,4 +3,12 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <application>
+
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="${googleMapKey}" />
+
+    </application>
+
 </manifest>

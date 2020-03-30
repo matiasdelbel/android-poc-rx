@@ -1,12 +1,22 @@
 apply plugin: 'com.android.application'
 apply from: "$rootDir/.dna/module-kotlin-android.gradle"
 
-android.defaultConfig.applicationId = "com.delbel.heritage.testapp"
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    defaultConfig {
+        multiDexEnabled true
+
+        applicationId = "com.delbel.heritage.testapp"
+    }
+}
 
 dependencies {
     implementation project(':heritage:domain')
     implementation project(':heritage:gateway')
     implementation project(':heritage:presentation')
+
+    implementation app.multiDex
 
     implementation core.dagger
     implementation core.daggerSupport
@@ -17,6 +27,9 @@ dependencies {
     kapt core.daggerProcessor
     kapt core.daggerCompiler
 
+    implementation core.navUi
+    implementation core.navFragment
+
     implementation core.paging
 
     implementation gateway.gson
@@ -24,4 +37,5 @@ dependencies {
 
     implementation presentation.appcompat
     implementation presentation.fresco
+    implementation presentation.map
 }

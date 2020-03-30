@@ -10,9 +10,8 @@ buildscript {
 
     dependencies {
         classpath plugin.gradle
-
         classpath plugin.kotlin
-        classpath plugin.kLint
+        classpath plugin.jetPackNav
     }
 }
 

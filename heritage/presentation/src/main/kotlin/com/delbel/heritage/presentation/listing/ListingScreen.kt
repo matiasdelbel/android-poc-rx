@@ -4,10 +4,11 @@ import android.content.Context
 import android.os.Bundle
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.paging.PagedList
-import com.delbel.dagger.viewmodel.ext.create
 import com.delbel.heritage.domain.HeritageDetail
 import com.delbel.heritage.presentation.R
 import dagger.android.support.AndroidSupportInjection
@@ -19,9 +20,11 @@ class ListingScreen : Fragment(R.layout.htg_screen_listing) {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    private lateinit var viewModel: ListingViewModel
+    private val viewModel by viewModels<ListingViewModel> { viewModelFactory }
 
-    private val adapter = HeritageAdapter(onTouch = { TODO() })
+    private val adapter = HeritageAdapter(onTouch = {
+        findNavController().navigate(ListingScreenDirections.listingToMap(heritageId = it.id))
+    })
 
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
@@ -32,7 +35,6 @@ class ListingScreen : Fragment(R.layout.htg_screen_listing) {
         super.onActivityCreated(savedInstanceState)
         setUpViewInitialState()
 
-        viewModel = viewModelFactory.create(this, ListingViewModel::class.java)
         viewModel.listing.observe(this, Observer(::handleHeritagePages))
     }
 

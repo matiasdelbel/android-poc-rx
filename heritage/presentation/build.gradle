@@ -3,8 +3,18 @@ apply plugin: 'com.android.library'
 apply from: "$rootDir/.dna/module-kotlin-android.gradle"
 
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'androidx.navigation.safeargs.kotlin'
 
-android.resourcePrefix 'htg'
+def keys = new Properties()
+file("$rootDir/keys.properties").withInputStream { keys.load(it) }
+
+android {
+    resourcePrefix 'htg'
+
+    defaultConfig {
+        manifestPlaceholders = [googleMapKey: keys.getProperty("googleMapKey")]
+    }
+}
 
 dependencies {
     implementation project(':heritage:domain')
@@ -12,13 +22,21 @@ dependencies {
     implementation core.dagger
     implementation core.daggerSupport
     implementation core.daggerViewModel
+    implementation core.daggerRx
     kapt core.daggerProcessor
     kapt core.daggerCompiler
+
+    implementation core.assistedInjection
+    kapt core.assistedInjectionCompiler
+
+    implementation core.navUi
+    implementation core.navFragment
 
     implementation core.paging
 
     implementation core.rxJava
 
+    implementation presentation.fragment
     implementation presentation.appcompat
     implementation presentation.core
     implementation presentation.viewModel
@@ -27,6 +45,7 @@ dependencies {
     implementation presentation.fresco
     implementation presentation.reactiveStreams
     implementation presentation.liveData
+    implementation presentation.map
 
     testImplementation test.jetPackCore
 }
